@@ -1,0 +1,61 @@
+NAME := libft.a
+CC := cc
+CFLAGS := -Wall -Werror -Wextra
+
+OBJS_DIR := ../objs
+
+#source files
+SRCS :=	ft_isalpha.c	\
+		ft_isdigit.c	\
+		ft_isalnum.c	\
+		ft_isascii.c	\
+		ft_isprint.c	\
+		ft_strlen.c		\
+		ft_memset.c		\
+		ft_bzero.c		\
+		ft_memcpy.c		\
+		ft_memmove.c	\
+		ft_strlcpy.c	\
+		ft_strlcat.c	\
+		ft_toupper.c	\
+		ft_tolower.c	\
+		ft_strchr.c		\
+		ft_strrchr.c	\
+		ft_strncmp.c	\
+		ft_memchr.c		\
+		ft_memcmp.c		\
+		ft_strnstr.c	\
+		ft_atoi.c		\
+		ft_calloc.c		\
+		ft_strdup.c		\
+		ft_substr.c		\
+		ft_strtrim.c	\
+		ft_strjoin.c	\
+		ft_split.c		\
+		ft_itoa.c
+
+OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
+
+all: $(NAME)
+
+# rule for creating the library
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
+# -MMD is to recompile the library if .h is modified
+$(OBJS_DIR)/%.o: %.c
+	@mkdir -p $(OBJS_DIR)
+	$(CC) $(CFLAGS) -c -MMD $< -o $@
+
+clean:
+	rm -f $(OBJS) $(OBJS_DIR)/*.d
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+
+# recompile the library .h when modified
+-include $(OBJS_DIR)/*.d
