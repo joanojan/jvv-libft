@@ -36,7 +36,9 @@ SRCS := 				\
 		test_strtrim.c	\
 		test_strjoin.c	\
 		test_split.c	\
-		test_itoa.c
+		test_itoa.c		\
+		test_strmapi.c	\
+		test_striteri.c
 
 OBJS := $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
 

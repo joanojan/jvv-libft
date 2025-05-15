@@ -36,6 +36,8 @@ void	test_strtrim(void);
 void	test_strjoin(void);
 void	test_split(void);
 void	test_itoa(void);
+void	test_strmapi(void);
+void	test_striteri(void);
 
 int	main(void)
 {
@@ -66,5 +68,7 @@ int	main(void)
 	test_strjoin();
 	test_split();
 	test_itoa();
+	test_strmapi();
+	test_striteri();
 	return (0);
 }
