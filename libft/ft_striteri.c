@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvila-va <jvila-va@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 12:02:29 by jvila-va          #+#    #+#             */
-/*   Updated: 2025/05/15 15:31:44 by jvila-va         ###   ########.fr       */
+/*   Created: 2025/05/15 13:08:02 by jvila-va          #+#    #+#             */
+/*   Updated: 2025/05/15 13:49:42 by jvila-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
+/*
+	Applies the function ’f’ to each character of the
+	string passed as argument, passing its index as
+	the first argument. Each character is passed by
+	address to ’f’ so it can be modified if necessary.
+*/
 
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int	i;
+	int	len;
+
+	if (!f)
+		return ;
 	i = 0;
-	while (i < n)
+	len = ft_strlen(s);
+	while (i < len)
 	{
-		if ((unsigned char)s1[i] != (unsigned char) s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		if (s1[i] == '\0')
-			return (0);
+		f(i, &s[i]);
 		i++;
 	}
-	return (0);
 }
